@@ -9,22 +9,23 @@ import {
 } from './components';
 import { AuthGuardService } from './services';
 
-import { SideNavOuterToolbarComponent, UnauthenticatedContentComponent } from './layouts';
+import { UnauthenticatedContentComponent, SideNavOuterToolbarComponent } from './layouts';
 
-import { CrmContactListComponent } from './pages/crm-contact-list/crm-contact-list.component';
-import { CrmContactDetailsComponent } from './pages/crm-contact-details/crm-contact-details.component';
+
 import { PlanningTaskListComponent } from './pages/planning-task-list/planning-task-list.component';
-import { PlanningTaskDetailsComponent } from './pages/planning-task-details/planning-task-details.component';
-import { AnalyticsDashboardComponent } from './pages/analytics-dashboard/analytics-dashboard.component';
-import { AnalyticsSalesReportComponent } from './pages/analytics-sales-report/analytics-sales-report.component';
-import { AnalyticsGeographyComponent } from './pages/analytics-geography/analytics-geography.component';
-import { PlanningSchedulerComponent } from './pages/planning-scheduler/planning-scheduler.component';
+import { PlanningTaskDetailsComponent } from './pages/planning-task-details/planning-task-details.component'; 
 import { AppSignInComponent } from './pages/sign-in-form/sign-in-form.component';
 import { AppSignUpComponent } from './pages/sign-up-form/sign-up-form.component';
+import { CrmContactListComponent } from './pages/crm-contact-list/crm-contact-list.component';
 import { AppResetPasswordComponent } from './pages/reset-password-form/reset-password-form.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'auth/login',
+    pathMatch: 'full'
+  },
   {
     path: 'auth',
     component: UnauthenticatedContentComponent,
@@ -64,12 +65,7 @@ const routes: Routes = [
         path: 'crm-contact-list',
         component: CrmContactListComponent,
         canActivate: [AuthGuardService],
-      },
-      {
-        path: 'crm-contact-details',
-        component: CrmContactDetailsComponent,
-        canActivate: [AuthGuardService],
-      },
+      }, 
       {
         path: 'planning-task-list',
         component: PlanningTaskListComponent,
@@ -78,26 +74,7 @@ const routes: Routes = [
       {
         path: 'planning-task-details',
         component: PlanningTaskDetailsComponent
-      },
-      {
-        path: 'planning-scheduler',
-        component: PlanningSchedulerComponent
-      },
-      {
-        path: 'analytics-dashboard',
-        component: AnalyticsDashboardComponent,
-        canActivate: [AuthGuardService],
-      },
-      {
-        path: 'analytics-sales-report',
-        component: AnalyticsSalesReportComponent,
-        canActivate: [AuthGuardService],
-      },
-      {
-        path: 'analytics-geography',
-        component: AnalyticsGeographyComponent,
-        canActivate: [AuthGuardService],
-      },
+      }, 
       {
         path: 'sign-in-form',
         component: AppSignInComponent,

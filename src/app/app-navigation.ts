@@ -3,15 +3,11 @@ export const navigation = [
     text: 'CRM',
     icon: 'user',
     path: '',
-    items: [
+    items: [ 
       {
         text: 'Contact List',
         path: '/crm-contact-list',
-      },
-      {
-        text: 'Contact Details',
-        path: '/crm-contact-details',
-      },
+      }, 
     ],
   },
   {
@@ -22,37 +18,10 @@ export const navigation = [
       {
         text: 'Task List',
         path: '/planning-task-list',
-      },
-      {
-        text: 'Task Details',
-        path: '/planning-task-details',
-      },
-      {
-        text: 'Scheduler',
-        path: '/planning-scheduler',
-      },
+      } 
     ],
-  },
-  {
-    text: 'Analytics',
-    icon: 'chart',
-    path: '',
-    items: [
-      {
-        text: 'Dashboard',
-        path: '/analytics-dashboard',
-      },
-      {
-        text: 'Sales Report',
-        path: '/analytics-sales-report',
-      },
-      {
-        text: 'Geography',
-        path: '/analytics-geography',
-      },
-    ],
-  },
-  {
+  }, 
+  /*{
     text: 'Authentication',
     icon: 'card',
     path: '',
@@ -70,16 +39,5 @@ export const navigation = [
         path: '/reset-password-form',
       }
     ],
-  },
-  {
-    text: 'Common',
-    icon: 'box',
-    path: '',
-    items: [
-      {
-        text: 'User Profile',
-        path: '/user-profile',
-      },
-    ]
-  }
+  },*/ 
 ];

@@ -17,9 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { CrmContactListModule } from './pages/crm-contact-list/crm-contact-list.component';
 import { CrmContactDetailsModule } from './pages/crm-contact-details/crm-contact-details.component';
 import { PlanningTaskListModule } from './pages/planning-task-list/planning-task-list.component';
-import { PlanningTaskDetailsModule } from './pages/planning-task-details/planning-task-details.component';
-import { AnalyticsDashboardModule } from './pages/analytics-dashboard/analytics-dashboard.component';
-import { AnalyticsSalesReportModule } from './pages/analytics-sales-report/analytics-sales-report.component'; 
+import { PlanningTaskDetailsModule } from './pages/planning-task-details/planning-task-details.component'; 
 import { ThemeService } from './services';
 
 @NgModule({
@@ -35,15 +33,11 @@ import { ThemeService } from './services';
     CreateAccountFormModule,
     ChangePasswordFormModule,
     LoginFormModule,
-    UnauthenticatedContentModule,
-
+    UnauthenticatedContentModule, 
     CrmContactListModule,
     CrmContactDetailsModule,
     PlanningTaskListModule,
-    PlanningTaskDetailsModule,
-    AnalyticsDashboardModule,
-    AnalyticsSalesReportModule, 
-
+    PlanningTaskDetailsModule, 
     AppRoutingModule,
   ],
   providers: [AuthService, ScreenService, AppInfoService, ThemeService],
