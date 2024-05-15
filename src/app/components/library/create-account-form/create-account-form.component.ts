@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, NgModule, Input, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 import { LoginOauthModule } from 'src/app/components/library/login-oauth/login-oauth.component';
 import { ValidationCallbackData } from 'devextreme-angular/common';
@@ -14,23 +15,65 @@ import { AuthService, IResponse } from 'src/app/services';
   templateUrl: './create-account-form.component.html',
   styleUrls: ['./create-account-form.component.scss'],
 })
+
+
+
+
 export class CreateAccountFormComponent implements OnInit {
+  constructor(private authService: AuthService, private router: Router, private fb: FormBuilder) { }
+
+  form: FormGroup;
+  loading = false; // controle para o indicador de carga
+ 
+  async ngOnInit(): Promise<void>  {
+    this.defaultAuthData = await this.authService.getUser();
+
+    this.form = this.fb.group({
+      username: ['', [Validators.required, Validators.pattern('^[A-Za-z]+$')]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      confirmedPassword: ['', Validators.required],
+      role: ['', Validators.required]
+    }, {
+      validator: this.confirmPasswordValidator('password', 'confirmedPassword')
+    });
+  }
+
+  confirmPasswordValidator(password: string, confirmPassword: string) {
+    return (formGroup: FormGroup) => {
+      const passwordControl = formGroup.controls[password];
+      const confirmPasswordControl = formGroup.controls[confirmPassword];
+
+      if (passwordControl.value !== confirmPasswordControl.value) {
+        confirmPasswordControl.setErrors({ confirmPasswordMismatch: true });
+      } else {
+        confirmPasswordControl.setErrors(null);
+      }
+    };
+  }
+  confirmPassword = (e: ValidationCallbackData) => e.value === this.formData.password;
+
   @Input() redirectLink = '/auth/login';
-  @Input() buttonLink = '/auth/login';
-  loading = false;
+  @Input() buttonLink = '/auth/login'; 
 
   defaultAuthData: IResponse;
 
   formData: any = {};
-
-  constructor(private authService: AuthService, private router: Router) { }
-
+ 
   async onSubmit(e: Event) {
     e.preventDefault();
-    const { email, password } = this.formData;
+    const { email, password, username, role} = this.formData;
     this.loading = true;
 
-    const result = await this.authService.createAccount(email, password);
+    var newUser = {
+      email: email,
+      username: username,
+      password: password,
+      role: role
+    }
+    const result = await this.authService.createAccount(newUser);
+    
+    
     this.loading = false;
 
     if (result.isOk) {
@@ -39,12 +82,7 @@ export class CreateAccountFormComponent implements OnInit {
       notify(result.message, 'error', 2000);
     }
   }
-
-  confirmPassword = (e: ValidationCallbackData) => e.value === this.formData.password;
-
-  async ngOnInit(): Promise<void> {
-    this.defaultAuthData = await this.authService.getUser();
-  }
+ 
 }
 @NgModule({
   imports: [

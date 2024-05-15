@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { SideNavOuterToolbarModule, SingleCardModule } from './layouts';
@@ -19,28 +20,31 @@ import { CrmContactDetailsModule } from './pages/crm-contact-details/crm-contact
 import { PlanningTaskListModule } from './pages/planning-task-list/planning-task-list.component';
 import { PlanningTaskDetailsModule } from './pages/planning-task-details/planning-task-details.component'; 
 import { ThemeService } from './services';
+import { AppSignInModule } from "./pages/sign-in-form/sign-in-form.component";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
-  imports: [
-    BrowserModule,
-    SideNavOuterToolbarModule,
-    SingleCardModule,
-    AppFooterModule,
-    ResetPasswordFormModule,
-    CreateAccountFormModule,
-    ChangePasswordFormModule,
-    LoginFormModule,
-    UnauthenticatedContentModule, 
-    CrmContactListModule,
-    CrmContactDetailsModule,
-    PlanningTaskListModule,
-    PlanningTaskDetailsModule, 
-    AppRoutingModule,
-  ],
-  providers: [AuthService, ScreenService, AppInfoService, ThemeService],
-  bootstrap: [AppComponent],
+    declarations: [
+        AppComponent,
+    ],
+    providers: [AuthService, ScreenService, AppInfoService, ThemeService],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        SideNavOuterToolbarModule,
+        SingleCardModule,
+        AppFooterModule,
+        ResetPasswordFormModule,
+        CreateAccountFormModule,
+        ChangePasswordFormModule,
+        LoginFormModule,
+        UnauthenticatedContentModule,
+        CrmContactListModule,
+        CrmContactDetailsModule,
+        PlanningTaskListModule,
+        PlanningTaskDetailsModule,
+        AppRoutingModule,
+        AppSignInModule,
+        HttpClientModule
+    ]
 })
 export class AppModule { }

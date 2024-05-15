@@ -1,27 +1,47 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';
-
-export interface IUser {
-  email: string;
-  name?: string;
-  avatarUrl?: string;
-}
-
+import { DataService } from 'src/app/services';
+import { Observable } from 'rxjs';
+import notify from 'devextreme/ui/notify';
+   
 export interface IResponse {
   isOk: boolean;
   data?: IUser;
   message?: string;
 }
 
-const defaultPath = '/';
-export const defaultUser: IUser = {
-  email: 'jheart@dx-email.com',
-  name: 'John Heart',
-  avatarUrl: 'https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/employees/01.png',
-};
+enum UserRole {
+    ADMIN,
+    USER   
+}
+export interface ILogin {  
+  email: string; 
+  password: string;
+} 
 
+export interface IUser {
+  id: number;
+  username: string;
+  password: string;
+  email: string;
+  role: UserRole;
+}
+ 
+const defaultUser: IUser | null = {
+  id: 0,  
+  username: '',
+  password: '',
+  email: '',
+  role: UserRole.USER 
+}; 
+  
+const defaultPath = '/';   
+
+const API_BACK = 'http://localhost:8080';
+ 
 @Injectable()
-export class AuthService {
+export class AuthService { 
   private _user: IUser | null = defaultUser;
 
   get loggedIn(): boolean {
@@ -34,22 +54,29 @@ export class AuthService {
     this._lastAuthenticatedPath = value;
   }
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private http: HttpClient) { } 
 
   async logIn(email: string, password: string) {
-    try {
-      // Send request
-      this._user = { ...defaultUser, email };
-      this.router.navigate([this._lastAuthenticatedPath]);
+    try { 
+      this.http.post<any>(`${API_BACK}/auth/login`, {email: email, password: password}).subscribe({
+        next: (response) => {
+          console.log('Token:', response);    
+            localStorage.setItem('token', response.token);
+          this.router.navigate([this._lastAuthenticatedPath]);
 
-      return {
-        isOk: true,
-        data: this._user,
-      };
+          return {
+            isOk: true,
+            data: this._user,
+          };
+        },
+        error: (error) => { 
+          notify(error.message, 'error', 2000); 
+        }
+      }); 
     } catch {
       return {
         isOk: false,
-        message: 'Authentication failed',
+        message: 'Email ou senha errados',
       };
     }
   }
@@ -70,14 +97,32 @@ export class AuthService {
     }
   }
 
-  async createAccount(email: string, password: string) {
+  async createAccount(newUser) {
     try {
-      // Send request
+      try { 
+        this.http.post<any>(`${API_BACK}/auth/register`, newUser).subscribe({
+          next: (response) => {
+            console.log('user:', response);    
+            this.router.navigate([this._lastAuthenticatedPath]);
+  
+            return {
+              isOk: true,
+              data: this._user,
+            };
+          },
+          error: (error) => { 
+            notify(error.message, 'error', 2000); 
+          }
+        }); 
+      } catch {
+        return {
+          isOk: false,
+          message: 'Authentication failed',
+        };
+      } 
 
       this.router.navigate(['/auth/create-account']);
-      return {
-        isOk: true,
-      };
+    
     } catch {
       return {
         isOk: false,
@@ -89,6 +134,8 @@ export class AuthService {
   async changePassword(email: string, recoveryCode: string) {
     try {
       // Send request
+
+
 
       return {
         isOk: true,

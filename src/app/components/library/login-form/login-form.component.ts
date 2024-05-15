@@ -7,12 +7,14 @@ import { DxFormModule } from 'devextreme-angular/ui/form';
 import { DxLoadIndicatorModule } from 'devextreme-angular/ui/load-indicator';
 import { DxButtonModule, DxButtonTypes } from 'devextreme-angular/ui/button';
 import notify from 'devextreme/ui/notify';
-import { AuthService, IResponse, ThemeService } from 'src/app/services';
+import { AuthService, DataService, IResponse, ThemeService } from 'src/app/services';
+import { ILogin } from 'src/app/services';
 
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss'],
+  providers: [DataService]
 })
 export class LoginFormComponent implements OnInit {
   @Input() resetLink = '/auth/reset-password';
@@ -32,19 +34,11 @@ export class LoginFormComponent implements OnInit {
     placeholder: 'Password',
     stylingMode:'filled',
     mode: this.passwordMode,
-    value: 'password',
-     buttons: [{
-       name: 'password',
-       location: 'after',
-       options: {
-         icon: 'info',
-         stylingMode:'text',
-         onClick: () => this.changePasswordMode(),
-       }
-     }]
+    value: '',
+     
   }
 
-  constructor(private authService: AuthService, private router: Router, private themeService: ThemeService) {
+  constructor(private authService: AuthService, private router: Router, private themeService: ThemeService, private service: DataService) {
     this.themeService.isDark.subscribe((value: boolean) => {
       this.btnStylingMode = value ? 'outlined' : 'contained';
     });
@@ -58,7 +52,7 @@ export class LoginFormComponent implements OnInit {
   async onSubmit(e: Event) {
     e.preventDefault();
     const { email, password } = this.formData;
-    this.loading = true;
+    this.loading = true; 
 
     const result = await this.authService.logIn(email, password);
     this.loading = false;

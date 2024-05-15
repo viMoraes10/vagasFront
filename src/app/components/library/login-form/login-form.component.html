@@ -1,5 +1,6 @@
 <form class="login-form" (submit)="onSubmit($event)">
   <dx-form
+    width="250px"
     [formData]="formData"
     [disabled]="loading"
     [showColonAfterLabel]="true"
@@ -17,11 +18,11 @@
     >
       <dxi-validation-rule
         type="required"
-        message="Email is required"
+        message="Email é obrigatorio"
       ></dxi-validation-rule>
       <dxi-validation-rule
         type="email"
-        message="Email is invalid"
+        message="Email invalido"
       ></dxi-validation-rule>
       <dxo-label [visible]="false"></dxo-label>
     </dxi-item>
@@ -33,21 +34,10 @@
     >
       <dxi-validation-rule
         type="required"
-        message="Password is required"
+        message="Senha invalida"
       ></dxi-validation-rule>
       <dxo-label [visible]="false"></dxo-label>
-    </dxi-item>
-
-    <dxi-item
-      dataField="rememberMe"
-      editorType="dxCheckBox"
-      [editorOptions]="{
-        text: 'Remember me',
-        elementAttr: { class: 'form-text' }
-      }"
-    >
-      <dxo-label [visible]="false"></dxo-label>
-    </dxi-item>
+    </dxi-item> 
 
     <dxi-item itemType="button">
       <dxo-button-options
@@ -69,14 +59,10 @@
             [visible]="true"
           ></dx-load-indicator>
         </ng-container>
-        <ng-template #notLoading>Sign In</ng-template>
+        <ng-template #notLoading>Entrar</ng-template>
       </span>
     </ng-container>
   </dx-form>
-
-  <div class="reset-link">
-    <a [routerLink]="resetLink">Forgot password?</a>
-  </div>
 
   <dx-button
     class="btn-create-account"
@@ -86,6 +72,5 @@
     (onClick)="onCreateAccountClick()"
   >
   </dx-button>
-
-  <app-login-oauth></app-login-oauth>
+ 
 </form>

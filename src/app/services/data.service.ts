@@ -9,15 +9,32 @@ import {
   toArray,
 } from 'rxjs/operators';
 import { Task } from 'src/app/types/task';
-import { Contact } from 'src/app/types/contact';
+import { Contact } from 'src/app/types/contact'; 
 import { Sale, SalesOrOpportunitiesByCategory } from '../types/analytics';
+import { ILogin } from 'src/app/services'; 
+import Jobs from 'src/app/types/jobs';
+
 
 const API_URL = 'https://js.devexpress.com/Demos/RwaService/api';
+
+const API_BACK = 'http://localhost:8080';
 
 @Injectable()
 export class DataService {
   constructor(private http: HttpClient) {}
+ 
+  public postLogin = (s: ILogin)  => {
+    return this.http.post<any>(`${API_BACK}/auth/login`, s);
+  } 
 
+  public getJobs = () => {
+    const token =  localStorage.getItem('token');
+    const headers = {
+      Authorization: `Bearer ${token}`
+    };
+
+    return this.http.get<Jobs[]>(`${API_BACK}/job/all`, { headers });
+  }
   public getContacts = () =>
     this.http.get<Contact[]>(`${API_URL}/Users/Contacts`);
 
@@ -140,24 +157,6 @@ export class DataService {
           text: 'Brett Johnson',
           color: '#B3E5FC',
           checkboxColor: '#29B6F6',
-        },
-        {
-          id: 1,
-          text: 'Tasks',
-          color: '#C8E6C9',
-          checkboxColor: '#66BB6A',
-        },
-        {
-          id: 2,
-          text: 'Reminder',
-          color: '#FFCDD2',
-          checkboxColor: '#EF5350',
-        },
-        {
-          id: 3,
-          text: 'Contacts',
-          color: '#FFE0B2',
-          checkboxColor: '#FFA726',
         }],
     },
     {

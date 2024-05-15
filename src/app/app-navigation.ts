@@ -1,16 +1,16 @@
 export const navigation = [
   {
-    text: 'CRM',
-    icon: 'user',
+    text: 'Oportunidades',
+    icon: 'card',
     path: '',
     items: [ 
       {
-        text: 'Contact List',
+        text: 'Vagas Internas',
         path: '/crm-contact-list',
       }, 
     ],
   },
-  {
+  /*{
     text: 'Planning',
     icon: 'event',
     path: '',
@@ -21,7 +21,7 @@ export const navigation = [
       } 
     ],
   }, 
-  /*{
+  {
     text: 'Authentication',
     icon: 'card',
     path: '',

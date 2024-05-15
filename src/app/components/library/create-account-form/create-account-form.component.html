@@ -4,7 +4,30 @@
     [showColonAfterLabel]="true"
     [showRequiredMark]="false"
     [disabled]="loading"
-  >
+  > 
+
+  <!-- Campo de Nome -->
+  <dxi-item
+  dataField="username"
+  editorType="dxTextBox"
+  [editorOptions]="{
+    placeholder: 'Nome',
+    pattern: '^[A-Za-z]+$',  
+    stylingMode: 'filled',
+    mode: 'text',
+    value: defaultAuthData?.data?.username
+    }">
+
+    <dxi-validation-rule
+      type="required"
+      message="Nome é obrigatório"
+    ></dxi-validation-rule>
+  
+    <dxo-label [visible]="false"></dxo-label>
+  </dxi-item>
+
+
+  <!-- Campo de Email -->
     <dxi-item
       dataField="email"
       editorType="dxTextBox"
@@ -17,28 +40,28 @@
     >
       <dxi-validation-rule
         type="required"
-        message="Email is required"
+        message="Email é obrigatorio"
       ></dxi-validation-rule>
       <dxi-validation-rule
         type="email"
-        message="Email is invalid"
+        message="Email invalido"
       ></dxi-validation-rule>
       <dxo-label [visible]="false"></dxo-label>
     </dxi-item>
-
+  <!-- Campo de senha -->
     <dxi-item
       dataField="password"
       editorType="dxTextBox"
       [editorOptions]="{
         stylingMode: 'filled',
-        placeholder: 'Password',
-        value: 'password',
+        placeholder: 'Senha',
+        value: '',
         mode: 'password'
       }"
     >
       <dxi-validation-rule
         type="required"
-        message="Password is required"
+        message="Senha é obrigatorio"
       ></dxi-validation-rule>
       <dxo-label [visible]="false"></dxo-label>
     </dxi-item>
@@ -48,31 +71,41 @@
       editorType="dxTextBox"
       [editorOptions]="{
         stylingMode: 'filled',
-        placeholder: 'Confirm Password',
-        value: 'password',
+        placeholder: 'Confime a senha',
+        value: '',
         mode: 'password'
       }"
     >
       <dxi-validation-rule
         type="required"
-        message="Password is required"
+        message="Senha é obrigatorio"
       ></dxi-validation-rule>
       <dxi-validation-rule
         type="custom"
-        message="Passwords do not match"
+        message="As senhas não coincidem"
         [validationCallback]="confirmPassword"
       >
       </dxi-validation-rule>
       <dxo-label [visible]="false"></dxo-label>
     </dxi-item>
-
-    <dxi-item>
-      <div class="policy-info">
-        By creating an account, you agree to the
-        <a [routerLink]="redirectLink">Terms of Service</a> and
-        <a [routerLink]="redirectLink">Privacy Policy</a>
-      </div>
-    </dxi-item>
+    
+      <!-- Campo de Role -->
+      <dxi-item
+      dataField="role"
+      editorType="dxSelectBox"
+      [editorOptions]="{
+        items: ['ADMIN', 'USER'],
+        value: defaultAuthData?.data?.role,
+        placeholder: 'Selecionar role',
+        stylingMode: 'filled'
+      }"
+    >
+      <dxi-validation-rule
+        type="required"
+        message="Role é obrigatório"
+      ></dxi-validation-rule>
+      <dxo-label [visible]="false"></dxo-label>
+    </dxi-item>    
 
     <dxi-item itemType="button">
       <dxo-button-options
@@ -94,12 +127,12 @@
           ></dx-load-indicator>
         </ng-container>
 
-        <ng-template #notLoading>Create a new account</ng-template>
+        <ng-template #notLoading>Criar uma nova conta</ng-template>
       </span>
-    </ng-container>
+    </ng-container> 
+     
   </dx-form>
   <div class="login-link">
-    Have an account? <a [routerLink]="redirectLink">Sign In</a>
-  </div>
-  <app-login-oauth></app-login-oauth>
+    Ter uma conta? <a [routerLink]="redirectLink">Entrar</a>
+  </div> 
 </form>

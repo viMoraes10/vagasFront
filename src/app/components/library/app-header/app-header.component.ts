@@ -26,7 +26,7 @@ export class AppHeaderComponent implements OnInit {
   @Input()
   title!: string;
 
-  user: IUser | null = { email: '' };
+  user: IUser ;
 
   userMenuItems = [
   {

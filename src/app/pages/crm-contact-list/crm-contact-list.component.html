@@ -8,8 +8,7 @@
     [focusedRowEnabled]="true"
     [showBorders]="true"
     [(focusedRowKey)]="userId"
-    (onRowClick)="rowClick($event)"
-    (onExporting)="onExporting($event)"
+    (onRowClick)="rowClick($event)" 
   >
     <dxo-load-panel [showPane]="false"></dxo-load-panel>
     <dxo-scrolling mode="virtual"></dxo-scrolling>
@@ -24,17 +23,10 @@
     <dxo-search-panel
       [visible]="true"
       placeholder="Contact Search"
-    ></dxo-search-panel>
-    <dxo-export
-      [enabled]="true"
-      [allowExportSelectedData]="true"
-      [formats]="['xlsx', 'pdf']"
-    >
-    </dxo-export>
-
+    ></dxo-search-panel> 
     <dxo-toolbar>
       <dxi-item location="before">
-        <div class="grid-header">Contacts</div>
+        <div class="grid-header">Vagas</div>
       </dxi-item>
       <dxi-item location="before" locateInMenu="auto">
         <dx-drop-down-button
@@ -48,11 +40,12 @@
       </dxi-item>
       <dxi-item location="after" locateInMenu="auto">
         <dx-button
-          text="Add Contact"
+          *ngIf="RoleAdmin"
+          text="Add Vagas"
           icon="plus"
           type="default"
           stylingMode="contained"
-          (onClick)="addContact()"
+          (onClick)="addJobs()"
         ></dx-button>
       </dxi-item>
       <dxi-item
@@ -66,56 +59,17 @@
           onClick: refresh,
           stylingMode: 'text'
         }"
-      ></dxi-item>
-      <dxi-item location="after" locateInMenu="auto">
-        <div class="separator"></div>
-      </dxi-item>
-      <dxi-item name="exportButton"></dxi-item>
-      <dxi-item location="after" locateInMenu="auto">
-        <div class="separator"></div>
-      </dxi-item>
-      <dxi-item name="columnChooserButton" locateInMenu="auto"></dxi-item>
-      <dxi-item name="searchPanel" locateInMenu="auto"></dxi-item>
-    </dxo-toolbar>
-
-    <dxi-column
-      dataField="name"
-      caption="Name"
+      ></dxi-item> 
+      <dxi-column
+      dataField="description"
+      caption="Descrição"
       sortOrder="asc"
-      [hidingPriority]="5"
-      [minWidth]="150"
-      cellTemplate="name"
-    ></dxi-column>
-    <dxi-column
-      dataField="company"
-      caption="Company"
-      [hidingPriority]="5"
-      [minWidth]="150"
-    ></dxi-column>
-    <dxi-column
-      dataField="status"
-      caption="Status"
-      cellTemplate="cellStatus"
-      editCellTemplate="editCellStatus"
-      [hidingPriority]="3"
-      [minWidth]="100"
-    ></dxi-column>
-    <dxi-column
-      dataField="assignedTo"
-      caption="Assigned to"
       [hidingPriority]="4"
+      [minWidth]="200"
     ></dxi-column>
-    <dxi-column
-      dataField="phone"
-      caption="Phone"
-      [customizeText]="customizePhoneCell"
-      [hidingPriority]="2"
-    ></dxi-column>
-    <dxi-column
-      dataField="email"
-      caption="Email"
-      [hidingPriority]="1"
-    ></dxi-column>
+      
+    </dxo-toolbar> 
+    
 
     <div *dxTemplate="let cellInfo of 'name'" class="name-template">
       <div>
@@ -146,15 +100,17 @@
         </div>
       </dx-select-box>
     </div>
+
+    
   </dx-data-grid>
 
-  <contact-panel
+ <!--  <contact-panel
     [userId]="userId"
     [(isOpened)]="isPanelOpened"
     (isOpenedChange)="onOpenedChange($event)"
     (pinnedChange)="onPinnedChange()"
   >
-  </contact-panel>
+  </contact-panel> -->
 
   <form-popup [(visible)]="isAddContactPopupOpened" (save)= "onClickSaveNewContact()" titleText="New Contact">
     <contact-new-form></contact-new-form>
