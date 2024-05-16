@@ -27,19 +27,11 @@
 
     <dxi-item location="after" locateInMenu="auto" menuItemTemplate="menuItem">
       <div *dxTemplate="let data of 'item'">
-        <user-panel
-          [user]="user"
-          [menuItems]="userMenuItems"
-          menuMode="context"
-        ></user-panel>
-
-       <!-- PALMEIRAS -->
+     
         <dx-button
-          text="Palmeiras"
-          stylingMode="text"
-          [elementAttr]="{
-            class: 'palmeiras-button'
-          }"
+          text="Sair"
+          icon="runner"
+          stylingMode="text" 
           (onClick)="logOut()"
         >
         </dx-button>
