@@ -11,9 +11,9 @@ import {
 import {
   FormTextboxModule,
   FormPhotoUploaderModule,
-} from 'src/app/components';
-import { newContact } from 'src/app/types/contact';
-import { getSizeQualifier } from 'src/app/services/screen.service';
+} from 'src/app/components'; 
+import { getSizeQualifier } from 'src/app/services/screen.service';  
+import Job from 'src/app/types/jobs';
 
 @Component({
   selector: 'contact-new-form',
@@ -22,11 +22,17 @@ import { getSizeQualifier } from 'src/app/services/screen.service';
 })
 
 export class ContactNewFormComponent {
-  newUser = newContact;
+  newJob: Job = {
+    id: 0, 
+    title: '',
+    description: '',
+    requirements: '',
+    isActive: true,
+  };
   getSizeQualifier = getSizeQualifier;
   constructor() { }
 
-  getNewContactData = ()=> ({ ...this.newUser })
+  getNewContactData = () => ({ ...this.newJob }) 
 }
 
 @NgModule({

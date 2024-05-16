@@ -38,9 +38,8 @@
           (onSelectionChanged)="filterByStatus($event)"
         ></dx-drop-down-button>
       </dxi-item>
-      <dxi-item location="after" locateInMenu="auto">
-        <dx-button
-          *ngIf="RoleAdmin"
+      <dxi-item location="after" locateInMenu="auto"  *ngIf="RoleAdmin">
+        <dx-button 
           text="Add Vagas"
           icon="plus"
           type="default"
@@ -59,17 +58,36 @@
           onClick: refresh,
           stylingMode: 'text'
         }"
-      ></dxi-item> 
+      ></dxi-item>   
+      </dxo-toolbar>  
+
+     <dxo-column
+        dataField="id"
+        caption="Identificador"
+        sortOrder="asc" 
+      ></dxo-column>
+
       <dxi-column
-      dataField="description"
-      caption="Descrição"
-      sortOrder="asc"
-      [hidingPriority]="4"
-      [minWidth]="200"
-    ></dxi-column>
-      
-    </dxo-toolbar> 
-    
+        dataField="title"
+        caption="Título"
+        sortOrder="asc" 
+      ></dxi-column>
+      <dxi-column
+        dataField="description"
+        caption="Descrição"
+        sortOrder="asc" 
+      ></dxi-column>
+      <dxi-column
+        dataField="requirements"
+        caption="Requisitos"
+        sortOrder="asc" 
+      ></dxi-column>
+      <dxi-column
+        dataField="isActive"
+        caption="Status"
+        sortOrder="asc" 
+      ></dxi-column>    
+
 
     <div *dxTemplate="let cellInfo of 'name'" class="name-template">
       <div>
@@ -102,17 +120,9 @@
     </div>
 
     
-  </dx-data-grid>
+  </dx-data-grid> 
 
- <!--  <contact-panel
-    [userId]="userId"
-    [(isOpened)]="isPanelOpened"
-    (isOpenedChange)="onOpenedChange($event)"
-    (pinnedChange)="onPinnedChange()"
-  >
-  </contact-panel> -->
-
-  <form-popup [(visible)]="isAddContactPopupOpened" (save)= "onClickSaveNewContact()" titleText="New Contact">
+  <form-popup [(visible)]="isAddContactPopupOpened" (save)= "onClickSaveNewContact()" titleText="Nova Vaga">
     <contact-new-form></contact-new-form>
-  </form-popup>
+  </form-popup> 
 </div>

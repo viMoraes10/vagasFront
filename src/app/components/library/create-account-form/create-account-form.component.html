@@ -94,12 +94,18 @@
       dataField="role"
       editorType="dxSelectBox"
       [editorOptions]="{
-        items: ['ADMIN', 'USER'],
+        items: [
+          { value: 'ADMIN', label: 'Administrador' },
+          { value: 'USER', label: 'Usuário' }
+        ],
+        displayExpr: 'label',
+        valueExpr: 'value',
         value: defaultAuthData?.data?.role,
-        placeholder: 'Selecionar role',
+        placeholder: 'Selecionar Permissão',
         stylingMode: 'filled'
-      }"
-    >
+      }">
+     
+
       <dxi-validation-rule
         type="required"
         message="Role é obrigatório"

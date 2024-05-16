@@ -1,5 +1,5 @@
 import {
-  Component, ViewChild, NgModule,
+  Component, ViewChild, NgModule,CUSTOM_ELEMENTS_SCHEMA
 } from '@angular/core';
 import {
   DxButtonModule,
@@ -14,8 +14,7 @@ import {
   CardActivitiesModule,
   ContactStatusModule,
 } from 'src/app/components';
-import { contactStatusList, ContactStatus, } from 'src/app/types/contact';
-import Job from 'src/app/types/jobs';
+import { contactStatusList, ContactStatus, } from 'src/app/types/contact'; 
 import { DxDropDownButtonTypes } from 'devextreme-angular/ui/drop-down-button';
 import DataSource from 'devextreme/data/data_source';
 import { CommonModule } from '@angular/common';
@@ -24,7 +23,8 @@ import notify from "devextreme/ui/notify";
 import { formatPhone } from 'src/app/pipes/phone.pipe';
 import { FormPopupModule } from 'src/app/components';
 import { ContactNewFormComponent, ContactNewFormModule } from 'src/app/components/library/contact-new-form/contact-new-form.component';
-import Jobs from 'src/app/types/jobs'; 
+import Jobs from 'src/app/types/jobs';  
+import { User } from 'src/app/types/user';
 type FilterContactStatus = ContactStatus | 'All';
 
 @Component({
@@ -47,6 +47,7 @@ export class CrmContactListComponent {
   RoleAdmin = true;
 
   userId: number;
+  user: User;
 
   dataSource = new DataSource<Jobs[], string>({
     key: 'id', 
@@ -59,6 +60,16 @@ export class CrmContactListComponent {
   });
 
   constructor(private service: DataService) {}
+
+  ngOnInit(): void { 
+
+    this.service.getUser().subscribe((user: User) => {
+      this.user  = user;
+      this.RoleAdmin = this.user.role === 'ADMIN';
+      console.log(this.user);
+    }); 
+  }
+
 
   addJobs() {
     this.isAddContactPopupOpened = true;
@@ -96,13 +107,22 @@ export class CrmContactListComponent {
     }
   };
 
-  onClickSaveNewContact = () => {
-    const { firstName, lastName} = this.contactNewForm.getNewContactData();
-    notify({
-        message: `New contact "${firstName} ${lastName}" saved`,
-        position: { at: 'bottom center', my: 'bottom center' }
+  onClickSaveNewContact = () => { 
+    var newJob = this.contactNewForm.getNewContactData();
+    this.service.postJobs(newJob).subscribe({
+      next: () => {
+        notify({
+          message: `Nova vaga foi adicionada com sucesso!`,
+          position: { at: 'bottom center', my: 'bottom center' }
+        }, 'success');
       },
-      'success');
+      error: (error) => {
+        notify({
+          message: `Erro ao adicionar nova vaga: ${error}`,
+          position: { at: 'bottom center', my: 'bottom center' }
+        }, 'error');
+      }
+    });
   };
 }
 
@@ -122,5 +142,6 @@ export class CrmContactListComponent {
   providers: [],
   exports: [],
   declarations: [CrmContactListComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA] 
 })
 export class CrmContactListModule { }

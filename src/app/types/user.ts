@@ -1,7 +1,7 @@
 // Primeiro, defina um enum para o UserRole, se necessário.
 enum UserRole {
-    ADMIN,
-    USER 
+    Admin = "ADMIN",
+    User = "USER",
 }
  
 export interface User {

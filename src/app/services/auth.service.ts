@@ -62,6 +62,7 @@ export class AuthService {
         next: (response) => {
           console.log('Token:', response);    
             localStorage.setItem('token', response.token);
+            localStorage.setItem('email', email);
           this.router.navigate([this._lastAuthenticatedPath]);
 
           return {

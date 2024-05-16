@@ -13,6 +13,7 @@ import { Contact } from 'src/app/types/contact';
 import { Sale, SalesOrOpportunitiesByCategory } from '../types/analytics';
 import { ILogin } from 'src/app/services'; 
 import Jobs from 'src/app/types/jobs';
+import { User } from 'src/app/types/user';
 
 
 const API_URL = 'https://js.devexpress.com/Demos/RwaService/api';
@@ -35,6 +36,26 @@ export class DataService {
 
     return this.http.get<Jobs[]>(`${API_BACK}/job/all`, { headers });
   }
+
+  public postJobs = (addJob) => {
+    const token =  localStorage.getItem('token');
+    const headers = {
+      Authorization: `Bearer ${token}`
+    };
+
+    return this.http.post<any>(`${API_BACK}/job/add`, addJob, { headers });
+  }
+
+  public getUser = () => {
+    const token =  localStorage.getItem('token');
+    const headers = {
+      Authorization: `Bearer ${token}`
+    };
+    const email =  localStorage.getItem('email');
+
+    return this.http.get<User>(`${API_BACK}/user`, { headers, params: { email } });
+  }
+
   public getContacts = () =>
     this.http.get<Contact[]>(`${API_URL}/Users/Contacts`);
 
