@@ -1,27 +1,15 @@
-# Angular
+# Bem-vindo ao Front-End do VAGAS!
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.0.
+Desenvolvi este projeto com muito cuidado e dedicação, buscando criar uma interface o mais intuitiva possível. Ele é um reflexo do meu estilo de programação e, embora haja sempre espaço para melhorias, estou evoluindo a cada dia. Concluir um software com back-end e front-end em apenas 7 dias foi um grande desafio.
 
-## Development server
+Aprendi muito durante esses 7 dias. O projeto ainda não está 100% finalizado, e peço desculpas por isso, pois 7 dias é realmente um prazo apertado.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Confesso que estou ansioso para saber o resultado. Independentemente do que acontecer, agradeço por esta oportunidade e espero que o sistema Pacto prospere, com ou sem a minha participação!
+ 
+# Requisitos
+Node - Versão: v20.12.2
+Angular - Versão: 16.2.12 
+O back-end tem que estar em execução, você pode acessar pelo github ou pelo arquivo anexo no email. 
+[Visite o GitHub!](https://github.com/viMoraes10/vagas/tree/master)
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+![alt text](image.png)
