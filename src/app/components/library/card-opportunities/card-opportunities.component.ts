@@ -5,9 +5,7 @@ import { CommonModule } from '@angular/common';
 import {
   DxButtonModule,
   DxLoadPanelModule,
-} from 'devextreme-angular';
-import notify from 'devextreme/ui/notify';
-import { Opportunity } from 'src/app/types/opportunities';
+} from 'devextreme-angular'; 
 import { OpportunityTileModule } from 'src/app/components/utils/opportunity-tile/opportunity-tile.component';
 
 @Component({
@@ -16,9 +14,6 @@ import { OpportunityTileModule } from 'src/app/components/utils/opportunity-tile
   styleUrls: ['./card-opportunities.component.scss'],
 })
 export class CardOpportunitiesComponent implements OnChanges {
-  @Input() openedOpportunities: Opportunity[];
-
-  @Input() closedOpportunities: Opportunity[];
 
   isLoading = true;
 

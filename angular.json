@@ -51,12 +51,12 @@
             ],
             "outputPath": "build",
             "index": "src/index.html",
-            "main": "src/main.ts",
+            "main": "src/main.ts", 
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/v_icon.png",
+              "src/v.png",
               "src/assets"
             ],
             "styles": [
@@ -109,7 +109,7 @@
                   "inlineCritical": false
                 },
                 "fonts": true
-              }
+              }  
             },
             "development": {
               "buildOptimizer": false,
@@ -143,13 +143,13 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
+            "main": "src/test.ts", 
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
+            "tsConfig": "tsconfig.spec.json", 
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/v_icon.png",
+              "src/v.png",
               "src/assets"
             ],
             "styles": [

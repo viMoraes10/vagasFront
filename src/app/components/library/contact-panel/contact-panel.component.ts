@@ -31,8 +31,7 @@ import {
   ContactStatusModule,
 } from 'src/app/components';
 import { ScreenService, DataService } from 'src/app/services';
-import { distinctUntilChanged, Subject, Subscription} from 'rxjs';
-import { Contact } from 'src/app/types/contact';
+import { distinctUntilChanged, Subject, Subscription} from 'rxjs'; 
 
 @Component({
   selector: 'contact-panel',

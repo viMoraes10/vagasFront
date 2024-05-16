@@ -1,8 +1,7 @@
 import {
   Component, NgModule, Input,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Opportunity } from 'src/app/types/opportunities';
+import { CommonModule } from '@angular/common'; 
 import notify from 'devextreme/ui/notify';
 
 @Component({
@@ -11,8 +10,7 @@ import notify from 'devextreme/ui/notify';
   styleUrls: ['./opportunity-tile.component.scss'],
 })
 
-export class OpportunityTileComponent {
-  @Input() data: Opportunity;
+export class OpportunityTileComponent { 
 
   opportunityClick() {
     notify('Click opportunity event');

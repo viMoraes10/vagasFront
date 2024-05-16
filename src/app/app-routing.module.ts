@@ -12,13 +12,11 @@ import { AuthGuardService } from './services';
 import { UnauthenticatedContentComponent, SideNavOuterToolbarComponent } from './layouts';
 
 
-import { PlanningTaskListComponent } from './pages/planning-task-list/planning-task-list.component';
-import { PlanningTaskDetailsComponent } from './pages/planning-task-details/planning-task-details.component'; 
+ 
 import { AppSignInComponent } from './pages/sign-in-form/sign-in-form.component';
 import { AppSignUpComponent } from './pages/sign-up-form/sign-up-form.component';
 import { CrmContactListComponent } from './pages/crm-contact-list/crm-contact-list.component';
-import { AppResetPasswordComponent } from './pages/reset-password-form/reset-password-form.component';
-import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { AppResetPasswordComponent } from './pages/reset-password-form/reset-password-form.component'; 
 
 const routes: Routes = [
   {
@@ -65,16 +63,7 @@ const routes: Routes = [
         path: 'crm-contact-list',
         component: CrmContactListComponent,
         canActivate: [AuthGuardService],
-      }, 
-      {
-        path: 'planning-task-list',
-        component: PlanningTaskListComponent,
-        canActivate: [AuthGuardService],
-      },
-      {
-        path: 'planning-task-details',
-        component: PlanningTaskDetailsComponent
-      }, 
+      },   
       {
         path: 'sign-in-form',
         component: AppSignInComponent,
@@ -89,11 +78,7 @@ const routes: Routes = [
         path: 'reset-password-form',
         component: AppResetPasswordComponent,
         canActivate: [AuthGuardService],
-      },
-      {
-        path: 'user-profile',
-        component: UserProfileComponent
-      },
+      }, 
       {
         path: '**',
         redirectTo: 'crm-contact-list',

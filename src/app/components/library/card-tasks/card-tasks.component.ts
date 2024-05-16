@@ -7,8 +7,7 @@ import {
   DxDataGridModule,
   DxLoadPanelModule,
 } from 'devextreme-angular';
-import { DxDataGridTypes } from 'devextreme-angular/ui/data-grid';
-import { Task } from '../../../types/task';
+import { DxDataGridTypes } from 'devextreme-angular/ui/data-grid'; 
 
 @Component({
   selector: 'card-tasks',
@@ -18,11 +17,11 @@ import { Task } from '../../../types/task';
 export class CardTasksComponent implements OnChanges {
   @ViewChild('dataGrid', { static: false }) component: DxDataGridComponent;
 
-  @Input() tasks: Task[];
+  @Input() tasks:   any[] = [];
 
   @Input() isLoading: boolean = false;
 
-  currentTasks: Task[];
+  currentTasks: any[] = [];
 
   constructor() {
     this.onReorder = this.onReorder.bind(this);

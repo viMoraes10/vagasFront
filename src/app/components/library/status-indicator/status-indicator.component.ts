@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
 import {
   Component, Input, NgModule, OnInit,
-} from '@angular/core';
-import { TaskStatus, TaskPriority } from 'src/app/types/task';
+} from '@angular/core'; 
 import { DxTextBoxModule } from 'devextreme-angular/ui/text-box';
 
 @Component({
@@ -28,7 +27,7 @@ import { DxTextBoxModule } from 'devextreme-angular/ui/text-box';
   styleUrls: ['./status-indicator.component.scss'],
 })
 export class StatusIndicatorComponent implements OnInit {
-  @Input() value: TaskStatus | TaskPriority;
+  @Input() value: string;
 
   @Input() isField = true;
 
@@ -37,15 +36,13 @@ export class StatusIndicatorComponent implements OnInit {
   dashValue = '';
 
   ngOnInit() {
-    this.dashValue = this.spaceToDash(this.value).toLowerCase();
+     
   }
 
   getValue(value: string): string {
     return (this.showBar ? '| ' : '') + value;
   }
-
-  spaceToDash = (value: TaskStatus) =>
-    (value?.replace(/ /g, '-') || '');
+ 
 }
 
 @NgModule({

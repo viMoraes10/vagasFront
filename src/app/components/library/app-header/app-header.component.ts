@@ -39,6 +39,9 @@ export class AppHeaderComponent implements OnInit {
 
   constructor(private authService: AuthService) { }
 
+  logOut = () => {  
+    this.authService.logOut();
+  };
   ngOnInit() {
     this.authService.getUser().then((e) => this.user = e.data);
   }

@@ -11,10 +11,8 @@ import {
 } from 'devextreme-angular';
 import { DxDataGridTypes } from 'devextreme-angular/ui/data-grid'; 
 import {
-  CardActivitiesModule,
-  ContactStatusModule,
-} from 'src/app/components';
-import { contactStatusList, ContactStatus, } from 'src/app/types/contact'; 
+  CardActivitiesModule, 
+} from 'src/app/components'; 
 import { DxDropDownButtonTypes } from 'devextreme-angular/ui/drop-down-button';
 import DataSource from 'devextreme/data/data_source';
 import { CommonModule } from '@angular/common';
@@ -24,8 +22,7 @@ import { formatPhone } from 'src/app/pipes/phone.pipe';
 import { FormPopupModule } from 'src/app/components';
 import { ContactNewFormComponent, ContactNewFormModule } from 'src/app/components/library/contact-new-form/contact-new-form.component';
 import Jobs from 'src/app/types/jobs';  
-import { User } from 'src/app/types/user';
-type FilterContactStatus = ContactStatus | 'All';
+import { User } from 'src/app/types/user'; 
 
 @Component({
   templateUrl: './crm-contact-list.component.html',
@@ -35,11 +32,8 @@ type FilterContactStatus = ContactStatus | 'All';
 export class CrmContactListComponent {
   @ViewChild(DxDataGridComponent, { static: true }) dataGrid: DxDataGridComponent;
 
-  @ViewChild(ContactNewFormComponent, { static: false }) contactNewForm: ContactNewFormComponent;
-
-  statusList = contactStatusList;
-
-  filterStatusList = ['All', ...contactStatusList];
+  @ViewChild(ContactNewFormComponent, { static: false }) contactNewForm: ContactNewFormComponent; 
+ 
 
   isPanelOpened = false;
 
@@ -98,13 +92,7 @@ export class CrmContactListComponent {
   };
 
   filterByStatus = (e: DxDropDownButtonTypes.SelectionChangedEvent) => {
-    const { item: status }: { item: FilterContactStatus } = e;
-
-    if (status === 'All') {
-      this.dataGrid.instance.clearFilter();
-    } else {
-      this.dataGrid.instance.filter(['status', '=', status]);
-    }
+   
   };
 
   onClickSaveNewContact = () => { 
@@ -136,7 +124,6 @@ export class CrmContactListComponent {
     ContactNewFormModule,
     FormPopupModule,
     CardActivitiesModule,
-    ContactStatusModule, 
     CommonModule,
   ],
   providers: [],

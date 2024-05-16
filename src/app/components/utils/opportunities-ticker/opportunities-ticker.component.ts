@@ -1,8 +1,7 @@
 import {
   Component, NgModule, Input,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { SalesOrOpportunitiesByCategory } from 'src/app/types/analytics';
+import { CommonModule } from '@angular/common'; 
 import { TickerCardModule } from 'src/app/components/library/ticker-card/ticker-card.component';
 
 @Component({
@@ -11,7 +10,7 @@ import { TickerCardModule } from 'src/app/components/library/ticker-card/ticker-
 })
 
 export class OpportunitiesTickerComponent {
-  @Input() data: SalesOrOpportunitiesByCategory = null;
+  @Input() data:  null;
 }
 
 @NgModule({

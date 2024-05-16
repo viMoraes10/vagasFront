@@ -32,6 +32,18 @@
           [menuItems]="userMenuItems"
           menuMode="context"
         ></user-panel>
+
+       <!-- PALMEIRAS -->
+        <dx-button
+          text="Palmeiras"
+          stylingMode="text"
+          [elementAttr]="{
+            class: 'palmeiras-button'
+          }"
+          (onClick)="logOut()"
+        >
+        </dx-button>
+
       </div>
     </dxi-item>
     <div *dxTemplate="let data of 'menuItem'">

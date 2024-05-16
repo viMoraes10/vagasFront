@@ -4,8 +4,7 @@ import {
   NgModule,
   Input
 } from '@angular/core';
-import { CardAnalyticsModule } from '../card-analytics/card-analytics.component';
-import { Sales, SalesOrOpportunitiesByCategory } from '../../../types/analytics';
+import { CardAnalyticsModule } from '../card-analytics/card-analytics.component'; 
 import { ApplyPipeModule } from "src/app/pipes/apply.pipe";
 
 @Component({
@@ -17,7 +16,7 @@ import { ApplyPipeModule } from "src/app/pipes/apply.pipe";
 export class TickerCardComponent {
   @Input() titleText: string;
 
-  @Input() data: SalesOrOpportunitiesByCategory | Sales | null = null;
+  @Input() data: null = null;
 
   @Input() total: string | null = null;
 

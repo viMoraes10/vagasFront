@@ -18,8 +18,7 @@ import {
   FormTextboxModule,
   FormPhotoModule,
   StatusSelectBoxModule,
-} from 'src/app/components';
-import { Contact } from 'src/app/types/contact';
+} from 'src/app/components'; 
 import { ValidationRule } from 'devextreme-angular/common';
 import { DxButtonTypes } from 'devextreme-angular/ui/button';
 import { ToolbarFormModule } from 'src/app/components/utils/toolbar-form/toolbar-form.component';

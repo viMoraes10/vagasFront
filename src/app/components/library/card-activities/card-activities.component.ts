@@ -5,8 +5,7 @@ import {
 import { DxButtonModule } from 'devextreme-angular/ui/button';
 import { DxListModule } from 'devextreme-angular/ui/list';
 import { DxLoadPanelModule } from 'devextreme-angular/ui/load-panel';
-import { CardMenuModule } from '../card-menu/card-menu.component';
-import { Activity } from 'src/app/types/activities';
+import { CardMenuModule } from '../card-menu/card-menu.component'; 
 
 @Component({
   selector: 'card-activities',
@@ -14,7 +13,7 @@ import { Activity } from 'src/app/types/activities';
   styleUrls: ['./card-activities.component.scss'],
 })
 export class CardActivitiesComponent {
-  @Input() activities: Activity[];
+  @Input() activities:  null;
 
   @Input() showBy? = false;
 

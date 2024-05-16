@@ -11,8 +11,7 @@
   fieldTemplate="field"
 >
   <div *dxTemplate="let data of 'field'" class="status-editor-field">
-    <contact-status class="status-indicator" [showText]="false" [value]="data">
-    </contact-status>
+ 
     <dx-text-box
       class="status-{{ data | lowercase }}"
       [hoverStateEnabled]="false"
@@ -22,7 +21,6 @@
     >
     </dx-text-box>
   </div>
-  <div *dxTemplate="let data of 'item'">
-    <contact-status [value]="data"> </contact-status>
+  <div *dxTemplate="let data of 'item'"> 
   </div>
 </dx-select-box>

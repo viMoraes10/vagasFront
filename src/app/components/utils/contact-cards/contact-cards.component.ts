@@ -9,16 +9,11 @@ import {
 } from 'devextreme-angular';
 import {
   CardNotesModule,
-  CardMessagesModule,
   CardActivitiesModule,
   CardOpportunitiesModule,
   CardTasksModule,
 } from 'src/app/components';
-import { Activity } from 'src/app/types/activities';
-import { Messages } from 'src/app/types/messages';
 import { Notes } from 'src/app/types/notes';
-import { Opportunities } from 'src/app/types/opportunities';
-import { Task } from 'src/app/types/task';
 
 @Component({
   selector: 'contact-cards',
@@ -27,16 +22,10 @@ import { Task } from 'src/app/types/task';
 })
 export class ContactCardsComponent {
     @Input() tasks: Task[];
-
-    @Input() activities: Activity[];
-
-    @Input() activeOpportunities: Opportunities;
-
-    @Input() closedOpportunities: Opportunities;
+ 
 
     @Input() notes: Notes;
-
-    @Input() messages: Messages;
+ 
 
     @Input() contactName: string;
 
@@ -48,9 +37,6 @@ export class ContactCardsComponent {
     DxButtonModule,
     DxTabPanelModule,
     DxDataGridModule,
-
-    CardNotesModule,
-    CardMessagesModule,
     CardActivitiesModule,
     CardOpportunitiesModule,
     CardTasksModule,
